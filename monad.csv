@@ -1,0 +1,145 @@
+Exercise,Description,Snippet,Tests,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage
+sqrtAndCheckEven ,"Die Funktion nimmt eine ganze Zahl und berechnet zuerst ihre (ganzzahlige) Quadratwurzel, wenn sie eine perfekte Quadratzahl ist. Dann prüft sie, ob die Wurzel gerade ist, und gibt in diesem Fall das Doppelte der Wurzel zurück. Sie verwendet dabei Maybe-Chaining: Schritt 1 ist die Wurzelziehen-Validierung, Schritt 2 die Paritätsprüfung und Berechnung. Wenn die Zahl keine perfekte Quadratzahl ist oder die Wurzel ungerade, gibt sie Nothing zurück, ansonsten Just mit dem doppelten Wert der Wurzel.
+","sqrtAndCheckEven :: Int -> Maybe Int  
+sqrtAndCheckEven n = undefined
+","sqrtAndCheckEven 16 == Just 8
+sqrtAndCheckEven 18 == Nothing
+sqrtAndCheckEven 9 == Nothing
+sqrtAndCheckEven 0 == Just 0",3,2,2,1,3,4
+tripleIfPositiveSquare ,"
+Beschreibung: Die Funktion nimmt eine ganze Zahl, bildet ihre Quadratzahl und prüft danach, ob das Ergebnis positiv ist. Sie quadriert zuerst die Zahl, gibt aber Nothing zurück, falls das Ergebnis 0 oder negativ ist. Ist das Quadrat positiv, wird das Ergebnis verdreifacht und zurückgegeben (Just). Falls das Quadrat nicht positiv ist, gibt sie Nothing zurück, sonst Just mit dem dreifachen Wert des Quadrats.","tripleIfPositiveSquare :: Int -> Maybe Int  
+tripleIfPositiveSquare n = undefined
+","tripleIfPositiveSquare 2 == Just 12
+tripleIfPositiveSquare 0 == Nothing
+tripleIfPositiveSquare (-2) == Nothing
+tripleIfPositiveSquare 1 == Just 3
+",3,2,2,4,3,4
+followRefChain ,"Beschreibung: Ein ConfigEntry ist entweder ein Wert (Val), ein Alias auf einen anderen Namen (Alias), oder ein zusammengesetzter Eintrag (Pair) aus zwei ConfigEntries; eine Env ist eine Liste von (Name,ConfigEntry)-Paaren. Die Funktion folgt einer Alias-Kette von bis zu zwei Schritten und gibt den Wert des erreichten Val zurück. Sie sucht zuerst nach dem Namen in der Env, folgt dort ggf. einem Alias, und gibt schließlich bei Val den Wert zurück. Ist ein Name nicht vorhanden, eine Alias-Kette zu lang oder landet nicht bei Val, gibt sie Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Val Int | Alias String | Pair ConfigEntry ConfigEntry deriving (Eq,Show)  
+type Env = [(String,ConfigEntry)]  
+followRefChain :: Env -> String -> Maybe Int  
+followRefChain env key = undefined","followRefChain [(""a"",Alias ""b""),(""b"",Val 42)] ""a"" == Just 42
+followRefChain [(""x"",Alias ""y"")] ""x"" == Nothing
+followRefChain [(""foo"",Pair (Val 1) (Val 2))] ""foo"" == Nothing
+followRefChain [(""m"",Alias ""n""),(""n"",Alias ""k""),(""k"",Val 7)] ""m"" == Just 7",3,3,3,1,5,3
+getTrustedEmployee ,"Beschreibung: Ein Employee ist entweder ein Festangestellter (FullTime mit Name, Vertrauensstatus und Abteilung) oder ein Freiberufler (Freelancer mit Name und Projektdauer); eine Company ist eine Liste von (Name, Employee)-Paaren. Die Funktion sucht einen Mitarbeiter nach Namen und prüft dann, ob er festangestellt UND vertrauenswürdig ist. Sie sucht zuerst den Namen in der Company-Liste, prüft dann ob der Employee ein FullTime mit True bei Vertrauensstatus ist, und gibt in diesem Fall den Namen der Abteilung zurück. Wird der Name nicht gefunden, ist der Employee kein FullTime oder nicht vertrauenswürdig, gibt sie Nothing zurück, sonst Just mit der Abteilung.","data Employee = FullTime String Bool String | Freelancer String Int deriving (Eq,Show)  
+type Company = [(String,Employee)]  
+getTrustedEmployee :: String -> Company -> Maybe String  
+getTrustedEmployee name company = undefined","getTrustedEmployee ""Eva"" [(""Eva"",FullTime ""Eva"" True ""IT"")] == Just ""IT""
+getTrustedEmployee ""Tom"" [(""Tom"",Freelancer ""Tom"" 6)] == Nothing
+getTrustedEmployee ""Susi"" [(""Susi"",FullTime ""Susi"" False ""HR"")] == Nothing
+getTrustedEmployee ""Paul"" [] == Nothing",4,4,4,2,3,3
+selectAvailableManager,"Beschreibung: Eine Role ist entweder ein Mitarbeiter (Staff) mit Name und Aktiv-Status oder ein Manager mit Name, Aktiv-Status und einer Abteilung; ein Team ist eine Liste von (Name,Role)-Paaren. Die Funktion sucht eine Person nach Namen und prüft, ob es sich um einen aktiven Manager handelt. Sie sucht zuerst den Namen in der Team-Liste, prüft dann, ob der Role-Konstruktor ein Manager mit aktivem Status (True) ist, und gibt bei Erfolg die Abteilung zurück. Wenn der Name nicht gefunden wird, die Person kein Manager ist oder nicht aktiv ist, gibt sie Nothing zurück, sonst Just mit der jeweiligen Abteilung.
+
+","data Role = Staff String Bool | Manager String Bool String deriving (Eq,Show)
+type Team = [(String,Role)]
+selectAvailableManager :: String -> Team -> Maybe String
+selectAvailableManager name team = undefined","selectAvailableManager ""Julia"" [(""Julia"",Manager ""Julia"" True ""IT""), (""Sam"",Staff ""Sam"" True)] == Just ""IT""
+selectAvailableManager ""Ben"" [(""Ben"",Manager ""Ben"" False ""HR"")] == Nothing
+selectAvailableManager ""Lisa"" [(""Lisa"",Staff ""Lisa"" True)] == Nothing
+selectAvailableManager ""Tom"" [] == Nothing
+
+
+",4,4,3,3,3,3
+halfIfNonzeroEven ,"Beschreibung: Die Funktion nimmt eine ganze Zahl und halbiert sie, wenn sie sowohl ungleich 0 als auch gerade ist. Sie prüft zuerst, ob die Zahl ungleich 0 ist, und danach, ob sie gerade ist (mod 2 == 0). Ist beides erfüllt, gibt sie das halbierte Ergebnis als Just zurück. Andernfalls, also wenn die Zahl 0 oder ungerade ist, gibt sie Nothing zurück.","halfIfNonzeroEven :: Int -> Maybe Int
+halfIfNonzeroEven n = undefined","halfIfNonzeroEven 8 == Just 4
+halfIfNonzeroEven 7 == Nothing
+halfIfNonzeroEven 0 == Nothing
+halfIfNonzeroEven (-4) == Just (-2)",2,4,2,4,2,4
+decThenCheckPositive ,"Beschreibung: Die Funktion nimmt eine ganze Zahl, zieht eins ab und prüft dann, ob das Ergebnis positiv ist. Zuerst berechnet sie n - 1 und validiert, dass das Resultat größer als 0 ist. Falls das Ergebnis diese Prüfung besteht, gibt sie die positive Zahl als Just zurück; andernfalls Nothing. Ist das Ergebnis nach dem Subtrahieren nicht positiv, ergibt die Funktion Nothing, ansonsten Just mit der Zahl.","decThenCheckPositive :: Int -> Maybe Int
+decThenCheckPositive n = undefined","decThenCheckPositive 5 == Just 4
+decThenCheckPositive 1 == Nothing
+decThenCheckPositive 0 == Nothing
+decThenCheckPositive (-2) == Nothing",2,4,2,4,1,4
+"expandConfigAlias","Beschreibung: Ein ConfigEntry ist entweder ein Wert (Val), ein Alias auf einen anderen Namen (Alias), oder ein Verweis auf ein anderes Feld (Ref); eine Env ist eine Liste von (Name,ConfigEntry)-Paaren. Die Funktion löst einen ConfigEntry auf, wobei sie bei Alias und Ref jeweils den entsprechenden Namen in der Env nachschlägt (maximal zwei Lookup-Schritte). Sie schaut zuerst den Namen für den ersten ConfigEntry in der Env nach, folgt ggf. einem Alias oder Ref noch ein zweites Mal, und erwartet schließlich einen Val-Eintrag. Wenn ein Name nicht vorhanden ist, die Kette zu lang ist oder kein Val erreicht wird, gibt sie Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Val Int | Alias String | Ref String deriving (Eq,Show)
+type Env = [(String,ConfigEntry)]
+expandConfigAlias :: Env -> String -> Maybe Int
+expandConfigAlias env key = undefined
+","expandConfigAlias [(""a"",Alias ""b""),(""b"",Ref ""c""),(""c"",Val 42)] ""a"" == Just 42
+expandConfigAlias [(""x"",Ref ""y""),(""y"",Val 7)] ""x"" == Just 7
+expandConfigAlias [(""z"",Alias ""notfound"")] ""z"" == Nothing
+expandConfigAlias [(""u"",Alias ""v""),(""v"",Alias ""w""),(""w"",Alias ""x"")] ""u"" == Nothing",5,4,4,3,4,4
+findPremiumMember,"Beschreibung: Ein Account ist entweder ein Gast (Guest) mit Nutzername oder ein registrierter Nutzer (User) mit Nutzername, Premium-Status und Punktezahl; eine AccountDB ist eine Liste von (Nutzername, Account)-Paaren. Die Funktion sucht einen Account nach Nutzername und prüft, ob es sich um einen registrierten Nutzer mit Premium-Status handelt. Sie schaut zuerst den Namen in der AccountDB nach, prüft dann, ob der Account ein User mit Premium-Status True ist, und gibt in diesem Fall die aktuelle Punktezahl zurück. Wird der Name nicht gefunden oder ist kein Premium-User hinterlegt, gibt sie Nothing zurück, sonst Just mit der Punktezahl.","data Account = Guest String | User String Bool Int deriving (Eq,Show)
+type AccountDB = [(String,Account)]
+findPremiumMember :: String -> AccountDB -> Maybe Int
+findPremiumMember name db = undefined","findPremiumMember ""alice"" [(""alice"",User ""alice"" True 120),(""bob"",User ""bob"" False 50)] == Just 120
+findPremiumMember ""bob"" [(""alice"",User ""alice"" True 120),(""bob"",User ""bob"" False 50)] == Nothing
+findPremiumMember ""eve"" [(""alice"",User ""alice"" True 120)] == Nothing
+findPremiumMember ""guest"" [(""guest"",Guest ""guest"")] == Nothing",4,5,4,4,2,4
+pickAvailableExpert ,"Beschreibung: Ein Specialist ist entweder ein Developer mit Name, Erfahrung (in Jahren) und Verfügbarkeit (Bool), oder ein Consultant mit Name, Fachgebiet und Verfügbarkeit; ein TeamDB ist eine Liste von (Name, Specialist)-Paaren. Die Funktion sucht einen Experten nach Namen und prüft, ob er ein verfügbarer Developer mit mindestens 5 Jahren Erfahrung ist. Sie sucht zuerst den Namen in der TeamDB, prüft dann ob der Specialist ein Developer mit Verfügbarkeit True und Erfahrung >= 5 ist, und gibt in diesem Fall den Namen zurück. Wird der Name nicht gefunden oder ist der Specialist kein ausreichend erfahrener und verfügbarer Developer, gibt sie Nothing zurück, sonst Just mit dem Namen.","data Specialist = Developer String Int Bool | Consultant String String Bool deriving (Eq,Show)
+type TeamDB = [(String,Specialist)]
+pickAvailableExpert :: String -> TeamDB -> Maybe String
+pickAvailableExpert name db = undefined","pickAvailableExpert ""Eva"" [(""Eva"",Developer ""Eva"" 7 True),(""Tom"",Consultant ""Tom"" ""AI"" True)] == Just ""Eva""
+pickAvailableExpert ""Tom"" [(""Eva"",Developer ""Eva"" 7 True),(""Tom"",Consultant ""Tom"" ""AI"" True)] == Nothing
+pickAvailableExpert ""Lena"" [(""Lena"",Developer ""Lena"" 3 True)] == Nothing
+pickAvailableExpert ""Max"" [] == Nothing",4,5,4,4,2,4
+extractFinalValue ,"Beschreibung: Ein Entry ist entweder ein Wert (Value), ein Alias auf einen anderen Namen (Alias), oder ein verschachteltes Feld (Nested) mit einem Entry; eine Env ist eine Liste von (Name,Entry)-Paaren. Die Funktion löst einen Entry durch bis zu zwei Namensauflösungen auf. Sie schaut zuerst einen Namen in der Env nach, folgt bei Alias dem referenzierten Namen ein weiteres Mal, und erwartet danach, dass das Ergebnis ein Value ist (auch innerhalb von Nested). Ist ein Name nicht vorhanden, die Kette zu lang oder landet nicht bei einem Value, gibt sie Nothing zurück, sonst Just mit dem Wert.","data Entry = Value Int | Alias String | Nested Entry deriving (Eq,Show)  
+type Env = [(String,Entry)]  
+extractFinalValue :: Env -> String -> Maybe Int  
+extractFinalValue env key = undefined","extractFinalValue [(""a"",Alias ""b""),(""b"",Nested (Value 9))] ""a"" == Just 9
+extractFinalValue [(""x"",Alias ""y"")] ""x"" == Nothing
+extractFinalValue [(""k"",Value 5)] ""k"" == Just 5
+extractFinalValue [(""n"",Alias ""n"")] ""n"" == Nothing",4,2,4,4,4,3
+findCertifiedPilot ,"Beschreibung: Ein CrewMember ist entweder ein Pilot mit Name, Flugstunden und Zertifizierungsstatus oder ein Techniker mit Name und Wartungsgebiet; eine CrewDB ist eine Liste von (Name, CrewMember)-Paaren.","data CrewMember = Pilot String Int Bool | Technician String String deriving (Eq,Show)
+type CrewDB = [(String,CrewMember)]
+findCertifiedPilot :: String -> CrewDB -> Maybe Int
+findCertifiedPilot name db = undefined","findCertifiedPilot ""Alice"" [(""Alice"",Pilot ""Alice"" 1200 True),(""Bob"",Technician ""Bob"" ""Avionics"")] == Just 1200
+findCertifiedPilot ""Bob"" [(""Alice"",Pilot ""Alice"" 1200 True),(""Bob"",Technician ""Bob"" ""Avionics"")] == Nothing
+findCertifiedPilot ""Eve"" [(""Carol"",Pilot ""Carol"" 800 False)] == Nothing
+findCertifiedPilot ""Carol"" [(""Carol"",Pilot ""Carol"" 800 False)] == Nothing",5,3,3,4,3,4
+resolveLink ,"Beschreibung: Ein ConfigEntry ist entweder ein fixer Wert (Fixed), ein Alias (Alias) auf einen anderen Namen oder ein Weiterleitungseintrag (Link) auf einen weiteren Namen; eine Env ist eine Liste von (Name,ConfigEntry)-Paaren. Die Funktion löst eine Konfiguration schrittweise auf, indem sie bis zu zwei Namensreferenzen (über Alias oder Link) nachschlägt und schließlich auf einen Fixed-Wert hofft. Sie schaut zuerst den Namen in der Env nach, folgt bei Bedarf einem Alias oder Link zu einem zweiten Namen (nochmaliges Lookup), und erwartet anschließend, dass der gefundene ConfigEntry ein Fixed ist. Ist ein Name nicht vorhanden, die Kette zu lang oder landet die Auflösung nicht bei einem Fixed, gibt die Funktion Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Fixed Int | Alias String | Link String deriving (Eq,Show)
+type Env = [(String,ConfigEntry)]
+resolveLink :: Env -> String -> Maybe Int
+resolveLink env name = undefined","resolveLink [(""a"",Alias ""b""),(""b"",Link ""c""),(""c"",Fixed 9)] ""a"" == Just 9
+resolveLink [(""x"",Alias ""y"")] ""x"" == Nothing
+resolveLink [(""k"",Link ""l""),(""l"",Alias ""m"")] ""k"" == Nothing
+resolveLink [(""z"",Fixed 3)] ""z"" == Just 3",4,4,3,5,3,4
+findQualifiedDriver ,"Beschreibung: Ein LicenseHolder ist entweder ein Fahrer (Driver) mit Name, Führerscheinklasse und Aktiv-Status oder ein Prüfer (Inspector) mit Name und Region; eine Registry ist eine Liste von (Name, LicenseHolder)-Paaren. Die Funktion sucht eine Person nach Namen und prüft, ob es sich um einen aktiven Fahrer mit Klasse ""B"" handelt. Sie schaut zuerst den Namen in der Registry nach, prüft dann, ob der LicenseHolder ein Driver mit Klasse ""B"" und Aktiv-Status True ist, und gibt in diesem Fall den Namen zurück. Wird der Name nicht gefunden, ist der LicenseHolder kein Fahrer mit Klasse ""B"" oder ist nicht aktiv, gibt sie Nothing zurück, sonst Just mit dem Namen.","data LicenseHolder = Driver String String Bool | Inspector String String deriving (Eq,Show)
+type Registry = [(String,LicenseHolder)]
+findQualifiedDriver :: String -> Registry -> Maybe String
+findQualifiedDriver name registry = undefined","findQualifiedDriver ""Eva"" [(""Eva"",Driver ""Eva"" ""B"" True)] == Just ""Eva""
+findQualifiedDriver ""Tom"" [(""Tom"",Driver ""Tom"" ""C"" True),(""Lisa"",Inspector ""Lisa"" ""Nord"")] == Nothing
+findQualifiedDriver ""Lisa"" [(""Lisa"",Inspector ""Lisa"" ""Nord"")] == Nothing
+findQualifiedDriver ""Eva"" [(""Eva"",Driver ""Eva"" ""B"" False)] == Nothing",4,4,3,4,3,4
+findVeganChef ,"Beschreibung: Ein TeamMember ist entweder ein Koch (Chef) mit Name, Spezialität und Vegan-Status, oder eine Servicekraft (Waiter) mit Name und Erfahrung; ein KitchenTeam ist eine Liste von (Name,TeamMember)-Paaren. Die Funktion sucht einen TeamMember nach Namen und prüft, ob es sich um einen Koch handelt, der vegane Gerichte zubereiten kann. Sie sucht zuerst den Namen in der KitchenTeam-Liste, prüft dann ob der TeamMember ein Chef mit Vegan-Status True ist, und gibt in diesem Fall die Spezialität zurück. Wird der Name nicht gefunden oder ist es kein veganer Koch, gibt sie Nothing zurück, sonst Just mit der Spezialität.","data TeamMember = Chef String String Bool | Waiter String Int deriving (Eq,Show)
+type KitchenTeam = [(String,TeamMember)]
+findVeganChef :: String -> KitchenTeam -> Maybe String
+findVeganChef name team = undefined","findVeganChef ""Lina"" [(""Lina"",Chef ""Lina"" ""Asiatisch"" True)] == Just ""Asiatisch""
+findVeganChef ""Max"" [(""Lina"",Chef ""Lina"" ""Asiatisch"" True)] == Nothing
+findVeganChef ""Sven"" [(""Sven"",Chef ""Sven"" ""Französisch"" False)] == Nothing
+findVeganChef ""Emil"" [(""Emil"",Waiter ""Emil"" 4),(""Lina"",Chef ""Lina"" ""Asiatisch"" True)] == Nothing",4,4,3,4,3,4
+resolveSettingLevel ,"Beschreibung: Ein Setting ist entweder ein fester Wert (Literal), ein Alias auf einen anderen Namen (Alias), oder ein Verweis auf einen Parent (ParentRef); eine Env ist eine Liste von (Name, Setting)-Paaren. Die Funktion löst ein Setting durch bis zu zwei Namensverfolgungen auf, um einen Literal-Wert zu erhalten. Sie schaut zuerst den gegebenen Namen in der Env nach, folgt bei Alias oder ParentRef dem referenzierten Namen noch einmal, und erwartet danach einen Literal-Eintrag. Ist ein Name nicht vorhanden, wird die Kette zu lang oder landet nicht bei einem Literal, gibt sie Nothing zurück, sonst Just mit dem Wert.","data Setting = Literal Int | Alias String | ParentRef String deriving (Eq,Show)
+type Env = [(String,Setting)]
+resolveSettingLevel :: Env -> String -> Maybe Int
+resolveSettingLevel env name = undefined","resolveSettingLevel [(""main"",Alias ""base""),(""base"",ParentRef ""root""),(""root"",Literal 8)] ""main"" == Just 8
+resolveSettingLevel [(""foo"",Alias ""bar""),(""bar"",Literal 5)] ""foo"" == Just 5
+resolveSettingLevel [(""foo"",Alias ""bar"")] ""foo"" == Nothing
+resolveSettingLevel [(""entry"",Literal 2)] ""entry"" == Just 2",4,4,3,4,3,4
+resolveLayeredConfig ,"Beschreibung: Eine ConfigEntry ist entweder ein konkreter Wert (Concrete), ein Alias zu einem anderen Namen (Alias), oder eine Weiterleitung (Forward) auf einen weiteren Namen; eine Env ist eine Liste von (Name, ConfigEntry)-Paaren. Die Funktion löst einen ConfigEntry schrittweise auf, wobei sie bei Alias und Forward jeweils dem referenzierten Namen folgt (maximal zwei Namensauflösungen). Sie schaut zuerst den Startnamen in der Env nach, folgt falls nötig einem Alias oder einer Forward-Weiterleitung zu einem zweiten Namen, und erwartet am Ende einen Concrete-Wert. Ist ein Name nicht vorhanden, die Kette zu lang oder landet nicht bei Concrete, gibt sie Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Concrete Int | Alias String | Forward String deriving (Eq,Show)
+type Env = [(String,ConfigEntry)]
+resolveLayeredConfig :: Env -> String -> Maybe Int
+resolveLayeredConfig env key = undefined","resolveLayeredConfig [(""main"",Alias ""backup""),(""backup"",Forward ""final""),(""final"",Concrete 7)] ""main"" == Just 7
+resolveLayeredConfig [(""a"",Concrete 2)] ""a"" == Just 2
+resolveLayeredConfig [(""x"",Alias ""y"")] ""x"" == Nothing
+resolveLayeredConfig [(""n"",Forward ""m""),(""m"",Alias ""z"")] ""n"" == Nothing",5,4,3,5,3,4
+resolveNestedConfig ,"Beschreibung: Ein ConfigEntry ist entweder ein Wert (Number), ein Alias auf einen anderen Namen (Alias), oder ein Referenzfeld (FieldRef); eine Env ist eine Liste von (Name, ConfigEntry)-Paaren. Die Funktion löst einen ConfigEntry schrittweise bis zu zwei Mal auf, um einen Number-Wert zu erhalten. Sie schaut zuerst den Namen in der Env nach, folgt bei Bedarf dem Alias- oder FieldRef-Eintrag einmal weiter, und erwartet danach einen Number-Eintrag. Ist ein Name nicht vorhanden, die Kette zu lang oder landet nicht bei Number, gibt die Funktion Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Number Int | Alias String | FieldRef String deriving (Eq,Show)
+type Env = [(String,ConfigEntry)]
+resolveNestedConfig :: Env -> String -> Maybe Int
+resolveNestedConfig env key = undefined","resolveNestedConfig [(""main"",Alias ""port""),(""port"",Number 8080)] ""main"" == Just 8080
+resolveNestedConfig [(""srv"",FieldRef ""missing"")] ""srv"" == Nothing
+resolveNestedConfig [(""a"",Alias ""b""),(""b"",Alias ""c""),(""c"",Number 5)] ""a"" == Nothing
+resolveNestedConfig [(""conf"",Number 42)] ""conf"" == Just 42",5,4,3,5,3,4
+subThenSquareIfPositive ,"Beschreibung: Die Funktion zieht eine Zahl von einer anderen ab und quadriert das Ergebnis, falls es positiv ist. Sie berechnet zuerst die Differenz (x - y), dann prüft sie, ob das Ergebnis größer als 0 ist, und quadriert es. Wenn das Zwischenergebnis nicht positiv ist, gibt sie Nothing zurück, sonst Just mit dem Quadrat. Der gesamte Vorgang bricht beim ersten Fehler ab.","subThenSquareIfPositive :: Int -> Int -> Maybe Int
+subThenSquareIfPositive x y = undefined","subThenSquareIfPositive 8 3 == Just 25
+subThenSquareIfPositive 3 8 == Nothing
+subThenSquareIfPositive 5 5 == Nothing
+subThenSquareIfPositive 10 (-2) == Just 144",3,4,2,4,3,4
+resolveDoubleRef ,"Beschreibung: Ein ConfigEntry ist entweder ein fester Wert (Fixed), ein Alias auf einen anderen Namen (Alias), oder ein Verweis (Ref) auf einen weiteren Namen; eine Env ist eine Liste von (Name, ConfigEntry)-Paaren. Die Funktion löst eine Konfiguration auf, indem sie bis zu zwei Namensreferenzen (über Alias oder Ref) verfolgt und schließlich einen Fixed-Wert extrahiert. Sie schaut zuerst den Startnamen in der Env nach, folgt bei Alias oder Ref dem genannten Namen ein zweites Mal (erneuter Lookup), und erwartet anschließend, dass der gefundene ConfigEntry ein Fixed ist. Ist ein Name nicht vorhanden, die Kette zu lang oder landet nicht bei einem Fixed, gibt sie Nothing zurück, sonst Just mit dem Wert.","data ConfigEntry = Fixed Int | Alias String | Ref String deriving (Eq,Show)
+type Env = [(String,ConfigEntry)]
+resolveDoubleRef :: Env -> String -> Maybe Int
+resolveDoubleRef env key = undefined","resolveDoubleRef [(""a"",Alias ""b""),(""b"",Ref ""c""),(""c"",Fixed 42)] ""a"" == Just 42
+resolveDoubleRef [(""x"",Alias ""z"")] ""x"" == Nothing
+resolveDoubleRef [(""k"",Fixed 7)] ""k"" == Just 7
+resolveDoubleRef [(""p"",Alias ""q""),(""q"",Alias ""r""),(""r"",Alias ""p"")] ""p"" == Nothing",5,4,3,5,3,4
+,,,,,,,,,
+Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
+monads,3.85,3.7,3,3.7,2.95,3.8,,,

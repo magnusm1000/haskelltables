@@ -1,0 +1,130 @@
+Exercise,Description,Snippet,Tests,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage
+oddSquaresSum,"Beschreibung: Gibt die Summe der Quadrate aller ungeraden Zahlen in einer Liste zurück, mithilfe von Rekursion. Gerade Zahlen werden dabei ignoriert.","oddSquaresSum :: [Int] -> Int
+oddSquaresSum [] = 0
+oddSquaresSum (x:xs) = undefined","oddSquaresSum [] == 0
+oddSquaresSum [2] == 0
+oddSquaresSum [1,2,3] == 10
+oddSquaresSum [0,7,4,3,8] == 58",5,5,4,1,3,4
+countOddNegatives ,"Beschreibung: Gibt die Anzahl der negativen und ungeraden Zahlen in einer Liste zurück, mithilfe von Rekursion.","countOddNegatives :: [Int] -> Int
+countOddNegatives [] = 0
+countOddNegatives (x:xs) = undefined","countOddNegatives ([] :: [Int]) == 0
+countOddNegatives [-3] == 1
+countOddNegatives [-3,2,-2,7,-5,0] == 2
+countOddNegatives [0,2,4,-2] == 0",5,3,3,3,3,4
+reverseList ,Beschreibung: Gibt die umgekehrte Reihenfolge der Elemente einer Liste mithilfe von Rekursion zurück.,"reverseList :: [a] -> [a]
+reverseList [] = []
+reverseList (x:xs) = undefined","reverseList ([] :: [Int]) == ([] :: [Int])
+reverseList [7] == [7]
+reverseList [1,2,3] == [3,2,1]
+reverseList [0,-1,4] == [4,-1,0]",5,4,4,1,3,4
+duplicateAll,"Beschreibung: Verdoppelt jedes Element einer Liste hintereinander, erhält die Reihenfolge und nutzt Rekursion.","duplicateAll :: [Int] -> [Int]
+duplicateAll [] = []
+duplicateAll (x:xs) = undefined","duplicateAll ([] :: [Int]) == ([] :: [Int])
+duplicateAll [7] == [7,7]
+duplicateAll [1,2,3] == [1,1,2,2,3,3]
+duplicateAll [0,-2] == [0,0,-2,-2]",5,4,3,2,2,4
+interleaveZeroes,Beschreibung: Fügt zwischen jedes Element der Liste eine Null und rekonstruiert dabei die Liste mithilfe von Rekursion. Am Ende wird keine Null angehängt. Die Reihenfolge der ursprünglichen Elemente bleibt erhalten.,"interleaveZeroes :: [Int] -> [Int]
+interleaveZeroes [] = []
+interleaveZeroes (x:xs) = undefined","interleaveZeroes ([] :: [Int]) == ([] :: [Int])
+interleaveZeroes [4] == [4]
+interleaveZeroes [1,2,3] == [1,0,2,0,3]
+interleaveZeroes [-2,7] == [-2,0,7]",5,4,4,2,4,4
+halveAll ,"Beschreibung: Gibt eine Liste zurück, in der jeder Wert aus der Eingabeliste ganzzahlig halbiert wurde, mithilfe von Rekursion.","halveAll :: [Int] -> [Int]
+halveAll [] = []
+halveAll (x:xs) = undefined","halveAll ([] :: [Int]) == ([] :: [Int])
+halveAll [9] == [4]
+halveAll [6,5,4] == [3,2,2]
+halveAll [-3,10] == [-1,5]",3,4,3,3,2,4
+productPositives,"Beschreibung: Gibt das Produkt aller positiven Zahlen in einer Liste zurück, mithilfe von Rekursion. Nicht-positive Werte werden ignoriert.","productPositives :: [Int] -> Int
+productPositives [] = 1
+productPositives (x:xs) = undefined","productPositives [] == 1
+productPositives [5] == 5
+productPositives [2,0,-3,4] == 8
+productPositives [-1,-2,0] == 1",5,4,3,4,3,4
+signAll ,"Beschreibung: Wandelt jede Zahl in einer Liste mithilfe von Rekursion in ihr Vorzeichen um (-1 für negativ, 0 für null, 1 für positiv).","signAll :: [Int] -> [Int]
+signAll [] = []
+signAll (x:xs) = undefined","signAll ([] :: [Int]) == ([] :: [Int])
+signAll [5] == [1]
+signAll [1,0,-3] == [1,0,-1]
+signAll [-10,0,7] == [-1,0,1]",4,4,4,3,4,4
+squarePlusOneAll ,"Beschreibung: Hebt jeden Wert einer Liste ganzzahlig zum Quadrat und addiert 1, mithilfe von Rekursion.","squarePlusOneAll :: [Int] -> [Int]  
+squarePlusOneAll [] = []  
+squarePlusOneAll (x:xs) = undefined","squarePlusOneAll ([] :: [Int]) == ([] :: [Int])
+squarePlusOneAll [2] == [5]
+squarePlusOneAll [1,2,3] == [2,5,10]
+squarePlusOneAll [-2,0,4] == [5,1,17]",5,4,3,4,3,4
+alternatingSum ,"Beschreibung: Berechnet die alternierende Summe einer Liste von Zahlen, beginnt mit Plus für das erste Element, dann Minus für das zweite usw. Verwendet dabei Rekursion.
+","alternatingSum :: [Int] -> Int
+alternatingSum [] = 0
+alternatingSum (x:xs) = x - alternatingSum xs","alternatingSum ([] :: [Int]) == 0
+alternatingSum [7] == 7
+alternatingSum [3,5,2,6] == 3-5+2-6
+alternatingSum [1,2,3] == 1-2+3",5,5,3,4,1,4
+repeatElements ,"Beschreibung: Wiederholt jedes Element der Eingabeliste einmal direkt hintereinander mithilfe von Rekursion, sodass die neue Liste doppelt so lang ist.","repeatElements :: [Int] -> [Int]
+repeatElements [] = []
+repeatElements (x:xs) = undefined","repeatElements ([] :: [Int]) == ([] :: [Int])
+repeatElements [7] == [7,7]
+repeatElements [3,4,5] == [3,3,4,4,5,5]
+repeatElements [0,-2] == [0,0,-2,-2]",5,4,3,5,2,4
+flattenPairsLeft ,"Beschreibung: Wandelt eine Liste von Tupeln in eine flache Liste um, wobei jeweils nur das erste Element jedes Paares erhalten bleibt, rekursiv verarbeitet. Die Reihenfolge bleibt erhalten.
+","flattenPairsLeft :: [(Int,Int)] -> [Int]
+flattenPairsLeft [] = []
+flattenPairsLeft (x:xs) = undefined","flattenPairsLeft ([] :: [(Int,Int)]) == ([] :: [Int])
+flattenPairsLeft [(5,9)] == [5]
+flattenPairsLeft [(1,2),(3,4),(5,6)] == [1,3,5]
+flattenPairsLeft [(0,-7),(-2,8)] == [0,-2]",5,3,4,3,3,4
+appendOnes ,"Beschreibung: Fügt am Ende jedes Elements der Eingabeliste eine Eins an und rekonstruiert die Liste mithilfe von Rekursion.
+","appendOnes :: [Int] -> [Int]
+appendOnes [] = []
+appendOnes (x:xs) = undefined","appendOnes ([] :: [Int]) == ([] :: [Int])
+appendOnes [4] == [4,1]
+appendOnes [2,5,7] == [2,1,5,1,7,1]
+appendOnes [0,-3] == [0,1,-3,1]",5,4,3,4,2,4
+countPositiveEvens ,"Beschreibung: Zählt mithilfe von Rekursion, wie viele positive und gerade Zahlen in einer Liste enthalten sind.","countPositiveEvens :: [Int] -> Int  
+countPositiveEvens [] = 0  
+countPositiveEvens (x:xs) = undefined","countPositiveEvens ([] :: [Int]) == 0
+countPositiveEvens [2] == 1
+countPositiveEvens [1,2,3,4] == 2
+countPositiveEvens [-2,0,6,7,8] == 2",5,4,3,3,3,4
+mirrorList ,"Beschreibung: Verdoppelt die Liste, indem sie original und dann dieselben Elemente in umgekehrter Reihenfolge anhängt, mithilfe von Rekursion.","mirrorList :: [Int] -> [Int]
+mirrorList [] = []
+mirrorList (x:xs) = undefined","mirrorList ([] :: [Int]) == ([] :: [Int])
+mirrorList [5] == [5,5]
+mirrorList [1,2,3] == [1,2,3,3,2,1]
+mirrorList [7,0] == [7,0,0,7]
+",5,4,4,3,3,4
+addIndexAll ,Beschreibung: Addiert zu jedem Element einer Liste seinen Null-basierenden Index mithilfe von Rekursion. Die Indizes sollen fortlaufend ab 0 gezählt werden.,"addIndexAll :: [Int] -> [Int]
+addIndexAll [] = []
+addIndexAll (x:xs) = undefined","addIndexAll ([] :: [Int]) == ([] :: [Int])
+addIndexAll [10] == [10]
+addIndexAll [3,4,5] == [3,5,7]
+addIndexAll [-5,0,1] == [-5,1,3]",3,3,3,3,3,4
+negativeAbsAll ,Beschreibung: Wandelt jede Zahl einer Liste mithilfe von Rekursion in ihren negativen Absolutwert um.,"negativeAbsAll :: [Int] -> [Int]  
+negativeAbsAll [] = []  
+negativeAbsAll (x:xs) = undefined","negativeAbsAll ([] :: [Int]) == ([] :: [Int])
+negativeAbsAll [7] == [-7]
+negativeAbsAll [1,-3,0] == [-1,-3,0]
+negativeAbsAll [-2,5] == [-2,-5]
+",5,4,3,4,3,4
+swapNeighbors ,Beschreibung: Vertauscht in einer Liste von Int jeweils benachbarte Elemente miteinander; bei ungerader Länge bleibt das letzte Element am Ende erhalten. Die Implementierung erfolgt rekursiv.,"swapNeighbors :: [Int] -> [Int]
+swapNeighbors [] = []
+swapNeighbors (x:xs) = undefined","swapNeighbors ([] :: [Int]) == ([] :: [Int])
+swapNeighbors [42] == [42]
+swapNeighbors [1,2,3,4] == [2,1,4,3]
+swapNeighbors [7,8,9] == [8,7,9]",4,3,4,4,3,4
+zipSelf,"Beschreibung: Erzeuge aus einer Liste eine Liste von Paaren, wobei jedes Element mit seinem Nachfolger als Tupel kombiniert wird. Das letzte Element bleibt, falls kein Nachfolger mehr existiert, alleine erhalten. Dies erfolgt mithilfe von Rekursion.","zipSelf :: [Int] -> [(Int,Int)]
+zipSelf [] = []
+zipSelf (x:xs) = undefined","zipSelf ([] :: [Int]) == ([] :: [(Int,Int)])
+zipSelf [7] == [(7,7)]
+zipSelf [1,2,3,4] == [(1,2),(2,3),(3,4),(4,4)]
+zipSelf [5,9] == [(5,9),(9,9)",4,2,4,3,4,2
+sumCubes ,Beschreibung: Berechnet die Summe der dritten Potenzen aller Elemente einer Liste mithilfe von Rekursion.,"sumCubes :: [Int] -> Int
+sumCubes [] = 0
+sumCubes (x:xs) = undefined","sumCubes ([] :: [Int]) == 0
+sumCubes [2] == 8
+sumCubes [1,2,3] == 36
+sumCubes [-1,2] == 7",4,2,3,4,3,4
+recursion,,,,4.6,3.7,3.4,3.15,2.85,3.9
+,,,,,,,,,
+Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
+recursion,4.6,3.7,3.4,3.15,2.85,3.9,,,

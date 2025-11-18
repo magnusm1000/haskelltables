@@ -1,0 +1,120 @@
+Exercise,Description,Snippet,Tests,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage
+allShorterThan5,"Beschreibung: Prüft, ob alle Strings in einer Liste kürzer als 5 Zeichen sind.
+","allShorterThan5 :: [String] -> Bool  
+allShorterThan5 xs = undefined","allShorterThan5 ([] :: [String]) == True
+allShorterThan5 [""Hallo""] == False
+allShorterThan5 [""abc"", ""de"", ""fgh""] == True
+allShorterThan5 [""test"", ""lang"", ""wxyz"", ""abcde""] == False
+",5,4,4,1,3,4
+sumLongerThan4,"Beschreibung: Gibt die Summe aller Zahlen in einer Liste zurück, deren Anzahl an Ziffern größer als 4 ist.","sumLongerThan4 :: [Int] -> Int
+sumLongerThan4 xs = undefined","sumLongerThan4 ([] :: [Int]) == 0
+sumLongerThan4 [9999] == 0
+sumLongerThan4 [12,10000,5000000] == 5000000 + 10000
+sumLongerThan4 [100000,-100000,1,22] == 100000 + (-100000)
+",5,2,4,4,4,4
+productEvens ,"Beschreibung: Liefert das Produkt aller geraden Zahlen in einer Liste zurück.","productEvens :: Integral a => [a] -> a
+productEvens xs = undefined
+","productEvens ([] :: [Int]) == 1
+productEvens [2] == 2
+productEvens [3,4,5,8] == 32
+productEvens [1,3,5] == 1",5,4,3,3,3,4
+allElemGT,"Beschreibung: Prüft, ob alle Elemente einer Liste größer als ein gegebener Schwellenwert sind.","allElemGT :: Ord a => a -> [a] -> Bool
+allElemGT n xs = undefined","allElemGT 5 ([] :: [Int]) == True
+allElemGT 2 [3] == True
+allElemGT 0 [2,4,1,5] == True
+allElemGT 7 [8,10,7,9] == False",5,4,3,3,3,4
+countEq,"Beschreibung: Zählt, wie oft ein gegebenes Element in einer Liste vorkommt.","countEq :: Eq a => a -> [a] -> Int
+countEq x xs = undefined","countEq 1 ([] :: [Int]) == 0
+countEq 'a' ""a"" == 1
+countEq 4 [2,4,4,3,4,2] == 3
+countEq 0 [0,0,0,0] == 4",5,3,3,3,3,4
+doubleOdds ,"Beschreibung: Verdoppelt alle ungeraden Zahlen in einer Liste.","doubleOdds :: Integral a => [a] -> [a]
+doubleOdds xs = undefined","doubleOdds ([] :: [Int]) == ([] :: [Int])
+doubleOdds [2] == [2]
+doubleOdds [1,2,3] == [2,2,6]
+doubleOdds [7,8,9] == [14,8,18]
+
+
+",4,2,3,4,4,4
+anyElem,"Beschreibung: Prüft, ob ein bestimmtes Element mindestens einmal in der Liste vorkommt.","anyElem :: Eq a => a -> [a] -> Bool
+anyElem x xs = undefined","anyElem 0 ([] :: [Int]) == False
+anyElem 5 [5] == True
+anyElem 3 [1,2,3,4] == True
+anyElem 7 [1,2,4,6] == False
+",4,4,3,3,3,4
+sumSquares ,"Beschreibung: Gibt die Summe der Quadrate aller Zahlen in einer Liste zurück.","sumSquares :: Num a => [a] -> a
+sumSquares xs = undefined","sumSquares ([] :: [Int]) == 0
+sumSquares [3] == 9
+sumSquares [1,2,3] == 14
+sumSquares [0,-2,4] == 20",4,4,3,3,3,4
+clampBetween ,"Beschreibung: Begrenzt alle Werte in einer Liste so, dass sie mindestens das Minimum und höchstens das Maximum annehmen könn","clampBetween :: Ord a => a -> a -> [a] -> [a]  
+clampBetween minV maxV xs = undefined","clampBetween 0 10 ([] :: [Int]) == ([] :: [Int])
+clampBetween 3 8 [7] == [7]
+clampBetween 2 5 [1,4,7,3] == [2,4,5,3]
+clampBetween (-1) 1 [-3,0,2,1,-2] == [-1,0,1,1,-1]",3,2,4,2,4,4
+negatePositives ,Beschreibung: Dreht das Vorzeichen aller positiven Zahlen in einer Liste um. Negative und null bleiben unveränder,"negatePositives :: (Num a, Ord a) => [a] -> [a]  
+negatePositives xs = undefined","negatePositives ([] :: [Int]) == ([] :: [Int])
+negatePositives [3] == [-3]
+negatePositives [-2,0,5,7] == [-2,0,-5,-7]
+negatePositives [0,-4,6,-9] == [0,-4,-6,-9]",4,3,3,3,3,4
+keepLongerThan3 ,"Beschreibung: Gibt nur die Strings einer Liste zurück, die länger als 3 Zeichen sind.","keepLongerThan3 :: [String] -> [String]
+keepLongerThan3 xs = undefined","keepLongerThan3 ([] :: [String]) == ([] :: [String])
+keepLongerThan3 [""hi""] == ([] :: [String])
+keepLongerThan3 [""foo"",""hello"",""a""] == [""hello""]
+keepLongerThan3 [""abcd"",""xy"",""efghij""] == [""abcd"",""efghij""]",4,4,4,4,3,4
+firstGreaterThan,"Beschreibung: Gibt das erste Element einer Liste zurück, das größer als ein gegebener Wert ist.","firstGreaterThan :: Ord a => a -> [a] -> Maybe a
+firstGreaterThan n xs = undefined","firstGreaterThan 10 ([] :: [Int]) == Nothing
+firstGreaterThan 2 [1] == Nothing
+firstGreaterThan 3 [2,4,1,5] == Just 4
+firstGreaterThan 7 [7,7,8,7] == Just 8",3,2,3,3,4,4
+elemTwice ,"Beschreibung: Prüft, ob ein gegebenes Element mindestens zweimal in der Liste vorkommt.","elemTwice :: Eq a => a -> [a] -> Bool
+elemTwice x xs = undefined
+","elemTwice 3 ([] :: [Int]) == False
+elemTwice 5 [5] == False
+elemTwice 2 [1,2,3,2,4] == True
+elemTwice 7 [7,1,7,7] == True",4,4,4,4,4,4
+replaceWhenEq ,Beschreibung: Ersetzt jedes Auftreten eines gegebenen Elements in einer Liste durch einen anderen übergebenen Wert.,"replaceWhenEq :: Eq a => a -> a -> [a] -> [a]
+replaceWhenEq x y xs = undefined","replaceWhenEq 3 9 ([] :: [Int]) == ([] :: [Int])
+replaceWhenEq 5 0 [5] == [0]
+replaceWhenEq 2 7 [1,2,3,2] == [1,7,3,7]
+replaceWhenEq 4 8 [4,4,4,4] == [8,8,8,8]",4,4,3,4,3,4
+productNegatives ,"Beschreibung: Gibt das Produkt aller negativen Zahlen in einer Liste zurück. Falls keine negativen Zahlen enthalten sind, wird 1 zurückgegeben.","productNegatives :: (Num a, Ord a) => [a] -> a
+productNegatives xs = undefined","productNegatives ([] :: [Int]) == 1
+productNegatives [-4] == -4
+productNegatives [2,-3,5,-1] == 3
+productNegatives [0,2,4] == 1
+",4,4,3,4,4,4
+findFirstEven,"Beschreibung: Gibt das erste gerade Element einer Liste als Maybe zurück. Falls keine gerade Zahl vorhanden ist, wird Nothing zurückgegeben.
+","findFirstEven :: Integral a => [a] -> Maybe a
+findFirstEven xs = undefined","findFirstEven ([] :: [Int]) == Nothing
+findFirstEven [3] == Nothing
+findFirstEven [5,7,4,9] == Just 4
+findFirstEven [2,2,3,4] == Just 2
+",3,3,3,4,4,4
+doubleNegatives ,Beschreibung: Verdoppelt alle negativen Zahlen in einer Liste; nicht-negative Zahlen bleiben unverändert.,"doubleNegatives :: (Num a, Ord a) => [a] -> [a]  
+doubleNegatives xs = undefined","doubleNegatives ([] :: [Int]) == ([] :: [Int])
+doubleNegatives [-1] == [-2]
+doubleNegatives [-3,0,4,-2] == [-6,0,4,-4]
+doubleNegatives [7,2,0] == [7,2,0]",4,4,3,4,3,4
+minMaybe,"Beschreibung: Gibt das kleinste Element einer Liste als Maybe zurück. Liefert Nothing bei leerer Liste.","minMaybe :: Ord a => [a] -> Maybe a
+minMaybe xs = undefined","minMaybe ([] :: [Int]) == Nothing
+minMaybe [7] == Just 7
+minMaybe [3,9,1,6] == Just 1
+minMaybe [5,5,5] == Just 5",2,3,3,3,4,4
+removeNegatives,Beschreibung: Entfernt alle negativen Zahlen aus einer Liste; nur null und positive Zahlen bleiben erhalten.,"removeNegatives :: (Num a, Ord a) => [a] -> [a]
+removeNegatives xs = undefined","removeNegatives ([] :: [Int]) == ([] :: [Int])
+removeNegatives [-5] == ([] :: [Int])
+removeNegatives [3,-2,0,7] == [3,0,7]
+removeNegatives [-4,-1,-10] == ([] :: [Int])",4,4,3,4,3,4
+allOdd ,"Beschreibung: Prüft, ob alle Zahlen in einer Liste ungerade sind. Gibt True zurück, wenn entweder die Liste leer ist oder jedes Element ungerade ist.","allOdd :: Integral a => [a] -> Bool
+allOdd xs = undefined","allOdd ([] :: [Int]) == True
+allOdd [2] == False
+allOdd [1,3,5,7] == True
+allOdd [1,4,3] == False
+",4,4,3,4,3,4
+,,,,4,3.4,3.25,3.35,3.4,4
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
+higher order functions,4,3.4,3.25,3.35,3.4,4,,,

@@ -1,0 +1,24 @@
+Exercise,Description,Snippet,Tests,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,solution validity
+lazyShare3,STRATEGY: Call-by-Need,EXPRESSION: let val = 6 - 2 in val * (val + 7),SOLUTION: (6 - 2) * ((6 - 2) + 7),3,5,3,1,3,5
+callByName4,STRATEGY: Call-by-Name,EXPRESSION: (\z -> z + (z * 2)) (5 - 1),SOLUTION: (5 - 1) + ((5 - 1) * 2),4,5,3,4,3,5
+nameSubst1,STRATEGY: Call-by-Name,EXPRESSION: (\m -> m - (m `div` 2)) (8 + 4),SOLUTION: (8 + 4) - ((8 + 4) `div` 2),5,5,3,4,3,5
+nameStep5,STRATEGY: Call-by-Name,EXPRESSION: (\y -> y + (y - 3)) (4 * 2),SOLUTION: (4 * 2) + ((4 * 2) - 3),5,5,3,4,3,5
+valueEval6,STRATEGY: Call-by-Value,EXPRESSION: (\m -> m + (m * 3)) (1 + 5),SOLUTION: (\m -> m + (m * 3)) 6,5,5,3,4,3,5
+nameCopy7,STRATEGY: Call-by-Name,EXPRESSION: (\a -> a + (a * 4)) (10 - 3),SOLUTION: (10 - 3) + ((10 - 3) * 4),5,5,3,4,3,5
+valReduce8,STRATEGY: Call-by-Value,EXPRESSION: (\q -> q ^ 2 + 1) (2 * 5),SOLUTION: (\q -> q ^ 2 + 1) 10,5,5,3,4,3,5
+lazyShare9,STRATEGY: Call-by-Need,EXPRESSION: let data = 2 + 5 in data * (data - 3),SOLUTION: (2 + 5) * ((2 + 5) - 3),5,5,3,4,3,5
+lazyReduce10,STRATEGY: Call-by-Need,EXPRESSION: let total = 7 + 2 in total - (total `div` 3),SOLUTION: (7 + 2) - ((7 + 2) `div` 3),5,5,3,4,3,5
+nameCopy11,STRATEGY: Call-by-Need,EXPRESSION: let total = 7 + 2 in total - (total `div` 3),SOLUTION: (7 + 2) - ((7 + 2) `div` 3),5,5,3,4,3,5
+nameExpand12,STRATEGY: Call-by-Name,EXPRESSION: (\s -> s - (s + 3)) (9 - 2),SOLUTION: (9 - 2) - ((9 - 2) + 3),5,5,3,4,3,5
+nameCopy13,STRATEGY: Call-by-Name,EXPRESSION: (\t -> t * (t + 5)) (6 - 2),SOLUTION: (6 - 2) * ((6 - 2) + 5),5,4,3,4,3,5
+nameSubst14,STRATEGY: Call-by-Name,EXPRESSION: (\p -> p + (2 * p)) (5 - 1),SOLUTION: (5 - 1) + (2 * (5 - 1)),5,4,3,4,3,5
+lazyReduce15,STRATEGY: Call-by-Need,EXPRESSION: let sum = 8 - 3 in sum + (sum * 2),SOLUTION: (8 - 3) + ((8 - 3) * 2),5,4,3,4,3,5
+needReduce16,STRATEGY: Call-by-Need,EXPRESSION: let sum = 8 - 3 in sum + (sum * 2),SOLUTION: (8 - 3) + ((8 - 3) * 2),5,5,3,4,3,5
+needExpand17,STRATEGY: Call-by-Need,EXPRESSION: let score = 3 + 6 in score - (score `mod` 4),SOLUTION: (3 + 6) - ((3 + 6) `mod` 4),5,5,3,4,3,5
+needBind18 ,STRATEGY: Call-by-Need,EXPRESSION: let bonus = 2 * 4 in bonus + (bonus `div` 2),SOLUTION: (2 * 4) + ((2 * 4) `div` 2),5,5,3,4,3,5
+valueCalc19,STRATEGY: Call-by-Value,EXPRESSION: (\m -> m + (m * 2)) (1 + 6),SOLUTION: (\m -> m + (m * 2)) 7,5,5,3,4,3,5
+nameCopy20,STRATEGY: Call-by-Name,EXPRESSION: (\q -> q + (3 * q)) (4 - 1),SOLUTION: (4 - 1) + (3 * (4 - 1)),5,5,3,4,3,5
+valueStep21,STRATEGY: Call-by-Value,EXPRESSION: (\b -> b - (b `div` 2)) (10 - 3),SOLUTION: (\b -> b - (b `div` 2)) 7,5,5,3,4,3,5
+,,,,,,,,,
+Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
+eval,4.85,4.85,3,3.85,3,5,,,
