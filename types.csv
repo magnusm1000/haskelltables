@@ -229,4 +229,5 @@ evalTerm (Add (Var ""x"") (Const 4)) == Nothing
 ,,,,,,,,,
 Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
 
-types,4.35,3.5,3.7,2.3,3.35,3.35!,,,
+types,4.35,3.5,3.7,2.3,3.35,3.35,,,
+
