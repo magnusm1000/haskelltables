@@ -1,53 +1,68 @@
 Exercise,Description,Snippet,Tests,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage
-replaceVarInTerm ,"Beschreibung: Ersetzt alle Variablen mit gegebenem Namen im algebraischen Ausdruck durch einen konstanten Wert und gibt den neuen Ausdruck zurück.","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)  
+replaceVarInTerm ,"Beschreibung: Ersetzt alle Variablen mit gegebenem Namen im algebraischen Ausdruck durch einen konstanten Wert und gibt den neuen Ausdruck zurück.
+","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)  
 replaceVarInTerm :: String -> Int -> Term -> Term  
 replaceVarInTerm _ _ (Const n) = undefined  
 replaceVarInTerm x n (Var y) = undefined  
 replaceVarInTerm x n (Add t1 t2) = undefined  
-replaceVarInTerm x n (Mul t1 t2) = undefined","replaceVarInTerm ""x"" 99 (Var ""x"") == Const 99
+replaceVarInTerm x n (Mul t1 t2) = undefined
+","replaceVarInTerm ""x"" 99 (Var ""x"") == Const 99
 replaceVarInTerm ""y"" 2 (Var ""x"") == Var ""x""
 replaceVarInTerm ""z"" 7 (Add (Var ""z"") (Mul (Const 1) (Var ""a""))) == Add (Const 7) (Mul (Const 1) (Var ""a""))
-replaceVarInTerm ""u"" 0 (Mul (Add (Var ""u"") (Const 5)) (Var ""u"")) == Mul (Add (Const 0) (Const 5)) (Const 0)",3,3,3,1,3,4
+replaceVarInTerm ""u"" 0 (Mul (Add (Var ""u"") (Const 5)) (Var ""u"")) == Mul (Add (Const 0) (Const 5)) (Const 0)
+",3,3,3,1,3,4
 constantsTerm ,"Beschreibung: Gibt eine Liste aller Konstanten (Int) im algebraischen Ausdruck zurück. Variablen, Addition und Multiplikation werden dabei rekursiv durchsucht.
-","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)
+
+","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)
 constantsTerm :: Term -> [Int]
 constantsTerm (Const n) = undefined
 constantsTerm (Var _) = undefined
 constantsTerm (Add t1 t2) = undefined
-constantsTerm (Mul t1 t2) = undefined","constantsTerm (Const 5) == [5]
+constantsTerm (Mul t1 t2) = undefined
+","constantsTerm (Const 5) == [5]
 constantsTerm (Var ""x"") == []
 constantsTerm (Add (Const 2) (Mul (Var ""y"") (Const 7))) == [2,7]
 constantsTerm (Mul (Add (Const 1) (Var ""x"")) (Var ""y"")) == [1]
 
-",3,3,3,4,3,4
-heightTree ,"Beschreibung: Berechnet die maximale Höhe eines Binärbaums, wobei ein leerer Baum die Höhe 0 und ein einzelner Knoten die Höhe 1 besitzt.","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)
+
+",3,3,3,4,3,4
+heightTree ,"Beschreibung: Berechnet die maximale Höhe eines Binärbaums, wobei ein leerer Baum die Höhe 0 und ein einzelner Knoten die Höhe 1 besitzt.
+","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)
 heightTree :: BinTree a -> Int
 heightTree Empty = undefined
-heightTree (Node l _ r) = undefined","heightTree Empty == 0
+heightTree (Node l _ r) = undefined
+","heightTree Empty == 0
 heightTree (Node Empty 42 Empty) == 1
 heightTree (Node (Node Empty 3 Empty) 8 (Node Empty 5 Empty)) == 2
 heightTree (Node (Node (Node Empty 7 Empty) 2 Empty) 1 Empty) == 3
 
-",4,4,4,1,3,4
+
+",4,4,4,1,3,4
 variablesTerm ,"Beschreibung: Gibt eine Liste aller Variablennamen (String) zurück, die im algebraischen Ausdruck (Term) mindestens einmal vorkommen; Konstanten werden ignoriert, Doppelnennungen sind möglich.","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)
 variablesTerm :: Term -> [String]
 variablesTerm (Const _) = undefined
 variablesTerm (Var s) = undefined
 variablesTerm (Add t1 t2) = undefined
-variablesTerm (Mul t1 t2) = undefined","variablesTerm (Const 3) == []
+variablesTerm (Mul t1 t2) = undefined
+","variablesTerm (Const 3) == []
 variablesTerm (Var ""x"") == [""x""]
 variablesTerm (Add (Var ""x"") (Var ""y"")) == [""x"",""y""]
 variablesTerm (Mul (Add (Var ""x"") (Var ""x"")) (Const 7)) == [""x"",""x""]
-",3,3,3,5,3,4
-leafCountTree,"Beschreibung: Zählt die Anzahl der Blätter (Knoten ohne Nachfolger) in einem Binärbaum. Gibt 0 für einen leeren Baum, 1 für einen Einzelknoten und summiert rekursiv die Blätter.","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)  
+
+",3,3,3,5,3,4
+leafCountTree,"Beschreibung: Zählt die Anzahl der Blätter (Knoten ohne Nachfolger) in einem Binärbaum. Gibt 0 für einen leeren Baum, 1 für einen Einzelknoten und summiert rekursiv die Blätter.
+","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)  
 leafCountTree :: BinTree a -> Int  
 leafCountTree Empty = undefined  
 leafCountTree (Node Empty _ Empty) = undefined  
-leafCountTree (Node l _ r) = undefined","leafCountTree Empty == 0
+leafCountTree (Node l _ r) = undefined
+","leafCountTree Empty == 0
 leafCountTree (Node Empty 5 Empty) == 1
 leafCountTree (Node (Node Empty 1 Empty) 2 (Node Empty 3 Empty)) == 2
-leafCountTree (Node (Node Empty 1 (Node Empty 4 Empty)) 2 Empty) == 1",4,4,4,3,3,4
-ordShape ,"Beschreibung: Implementiert eine Instanz von Ord für Shape, die zuerst nach Figur, dann nach Flächeninhalt vergleicht; Kreise < Rechtecke < Dreiecke, Gleiches mit Fläche vergleichen.","data Shape = Circle Double | Rectangle Double Double | Triangle Double Double Double deriving (Eq, Show)
+leafCountTree (Node (Node Empty 1 (Node Empty 4 Empty)) 2 Empty) == 1
+",4,4,4,3,3,4
+ordShape ,"Beschreibung: Implementiert eine Instanz von Ord für Shape, die zuerst nach Figur, dann nach Flächeninhalt vergleicht; Kreise < Rechtecke < Dreiecke, Gleiches mit Fläche vergleichen.
+","data Shape = Circle Double | Rectangle Double Double | Triangle Double Double Double deriving (Eq, Show)
 instance Ord Shape where
     Circle r1 <= Circle r2 = undefined
     Rectangle a1 b1 <= Rectangle a2 b2 = undefined
@@ -56,60 +71,81 @@ instance Ord Shape where
     Rectangle _ _ <= Circle _ = undefined
     Rectangle _ _ <= _ = undefined
     Triangle _ _ _ <= Triangle _ _ _ = undefined
-    Triangle _ _ _ <= _ = undefined","Circle 1 < Rectangle 1 1 == True
+    Triangle _ _ _ <= _ = undefined
+","Circle 1 < Rectangle 1 1 == True
 Rectangle 2 2 > Rectangle 1 5 == True
 Triangle 1 2 2 < Triangle 2 2 2 == True
-Circle 3 > Circle 2 == True",3,2,3,4,5,2
-reverseList ,"Beschreibung: Kehrt die Reihenfolge aller Elemente einer eigenen List-Implementierung um und gibt die invertierte Liste zurück. Gibt Nil für eine leere Eingabeliste zurück.","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+Circle 3 > Circle 2 == True
+",3,2,3,4,5,2
+reverseList ,"Beschreibung: Kehrt die Reihenfolge aller Elemente einer eigenen List-Implementierung um und gibt die invertierte Liste zurück. Gibt Nil für eine leere Eingabeliste zurück.
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 reverseList :: List a -> List a
 reverseList Nil = undefined
 reverseList (Cons x xs) = undefined
-","reverseList Nil == Nil
+
+","reverseList Nil == Nil
 reverseList (Cons 7 Nil) == Cons 7 Nil
 reverseList (Cons 1 (Cons 2 (Cons 3 Nil))) == Cons 3 (Cons 2 (Cons 1 Nil))
 reverseList (Cons True (Cons False (Cons True Nil))) == Cons True (Cons False (Cons True Nil))
 ",4,4,4,2,3,2
-foldableTriTree ,"Beschreibung: Implementiert Foldable für einen ternären Baum, indem alle Werte in Preorder-Reihenfolge traversiert und gefaltet werden (also zuerst Wurzel, dann linker, mittlerer und rechter Teilbaum).","data TriTree a = TEmpty | TNode a (TriTree a) (TriTree a) (TriTree a) deriving (Eq, Show)
+foldableTriTree ,"Beschreibung: Implementiert Foldable für einen ternären Baum, indem alle Werte in Preorder-Reihenfolge traversiert und gefaltet werden (also zuerst Wurzel, dann linker, mittlerer und rechter Teilbaum).
+","data TriTree a = TEmpty | TNode a (TriTree a) (TriTree a) (TriTree a) deriving (Eq, Show)
 instance Foldable TriTree where
     foldr f z TEmpty = undefined
-    foldr f z (TNode v l m r) = undefined","foldr (:) [] (TEmpty :: TriTree Int) == []
+    foldr f z (TNode v l m r) = undefined
+","foldr (:) [] (TEmpty :: TriTree Int) == []
 foldr (:) [] (TNode 1 TEmpty TEmpty TEmpty) == [1]
 foldr (:) [] (TNode 1 (TNode 2 TEmpty TEmpty TEmpty) TEmpty (TNode 3 TEmpty TEmpty TEmpty)) == [1,2,3]
-foldr (+) 0 (TNode 5 (TNode 7 TEmpty TEmpty TEmpty) (TNode 8 TEmpty TEmpty TEmpty) (TNode 9 TEmpty TEmpty TEmpty)) == 29",5,4,5,2,4,4
-partitionList ,"Beschreibung: Teilt eine eigene List-Struktur anhand eines Prädikats in ein Paar von Listen, wobei das erste Element die erfüllenden, das zweite die übrigen Elemente enthält.","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+foldr (+) 0 (TNode 5 (TNode 7 TEmpty TEmpty TEmpty) (TNode 8 TEmpty TEmpty TEmpty) (TNode 9 TEmpty TEmpty TEmpty)) == 29
+",5,4,5,2,4,4
+partitionList ,"Beschreibung: Teilt eine eigene List-Struktur anhand eines Prädikats in ein Paar von Listen, wobei das erste Element die erfüllenden, das zweite die übrigen Elemente enthält.
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 partitionList :: (a -> Bool) -> List a -> (List a, List a)
 partitionList p Nil = undefined
-partitionList p (Cons x xs) = undefined","partitionList (\_ -> False) Nil == (Nil, Nil)
+partitionList p (Cons x xs) = undefined
+","partitionList (\_ -> False) Nil == (Nil, Nil)
 partitionList even (Cons 1 Nil) == (Nil, Cons 1 Nil)
 partitionList even (Cons 2 (Cons 3 (Cons 4 Nil))) == (Cons 2 (Cons 4 Nil), Cons 3 Nil)
-partitionList (>1) (Cons 1 (Cons 2 (Cons 1 Nil))) == (Cons 2 Nil, Cons 1 (Cons 1 Nil))",5,4,4,2,3,2
-concatList ,"Beschreibung: Verbindet zwei eigene List-Strukturen zu einer neuen Liste, die alle Elemente der ersten gefolgt von allen der zweiten enthält. Gibt Nil bei zwei leeren Listen zurück.","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+partitionList (>1) (Cons 1 (Cons 2 (Cons 1 Nil))) == (Cons 2 Nil, Cons 1 (Cons 1 Nil))
+",5,4,4,2,3,2
+concatList ,"Beschreibung: Verbindet zwei eigene List-Strukturen zu einer neuen Liste, die alle Elemente der ersten gefolgt von allen der zweiten enthält. Gibt Nil bei zwei leeren Listen zurück.
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 concatList :: List a -> List a -> List a
 concatList Nil ys = undefined
-concatList (Cons x xs) ys = undefined","concatList Nil Nil == Nil
+concatList (Cons x xs) ys = undefined
+","concatList Nil Nil == Nil
 concatList (Cons 1 Nil) Nil == Cons 1 Nil
 concatList Nil (Cons 2 (Cons 3 Nil)) == Cons 2 (Cons 3 Nil)
 concatList (Cons 1 (Cons 2 Nil)) (Cons 3 Nil) == Cons 1 (Cons 2 (Cons 3 Nil))
-",5,4,4,2,3,4
-peanoMult ,"Beschreibung: Multipliziert zwei Peano-Zahlen rekursiv nach Definition der natürlichen Zahlenarithmetik und gibt das Produkt als Peano zurück. Zero mal beliebig ergibt Zero.","data Peano = Zero | Succ Peano deriving (Eq, Show)
+
+",5,4,4,2,3,4
+peanoMult ,"Beschreibung: Multipliziert zwei Peano-Zahlen rekursiv nach Definition der natürlichen Zahlenarithmetik und gibt das Produkt als Peano zurück. Zero mal beliebig ergibt Zero.
+","data Peano = Zero | Succ Peano deriving (Eq, Show)
 peanoMult :: Peano -> Peano -> Peano
 peanoMult Zero _ = undefined
-peanoMult (Succ n) m = undefined","peanoMult Zero Zero == Zero
+peanoMult (Succ n) m = undefined
+","peanoMult Zero Zero == Zero
 peanoMult Zero (Succ (Succ Zero)) == Zero
 peanoMult (Succ (Succ Zero)) Zero == Zero
-peanoMult (Succ (Succ Zero)) (Succ (Succ (Succ Zero))) == Succ (Succ (Succ (Succ (Succ (Succ Zero)))))",5,4,4,1,3,4
-functorStorage ,"Beschreibung: Implementiert Functor für Storage, indem alle Dateinamen und Verzeichnisnamen transformiert werden, die enthaltenen Int-Werte und Teilstrukturen bleiben unverändert erhalten.","data Storage a = File a Int | Dir a [Storage a] deriving (Eq, Show)
+peanoMult (Succ (Succ Zero)) (Succ (Succ (Succ Zero))) == Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
+",5,4,4,1,3,4
+functorStorage ,"Beschreibung: Implementiert Functor für Storage, indem alle Dateinamen und Verzeichnisnamen transformiert werden, die enthaltenen Int-Werte und Teilstrukturen bleiben unverändert erhalten.
+","data Storage a = File a Int | Dir a [Storage a] deriving (Eq, Show)
 instance Functor Storage where
     fmap f (File x n) = undefined
-    fmap f (Dir d xs) = undefined","fmap length (File ""readme.txt"" 42) == File 10 42
+    fmap f (Dir d xs) = undefined
+","fmap length (File ""readme.txt"" 42) == File 10 42
 fmap (++""!"") (File ""x"" 1) == File ""x!"" 1
 fmap reverse (Dir ""folder"" [File ""x"" 1]) == Dir ""redlof"" [File ""x"" 1]
-fmap (const ""A"") (Dir ""b"" [Dir ""c"" []]) == Dir ""A"" [Dir ""A"" []]",5,3,4,1,3,4
+fmap (const ""A"") (Dir ""b"" [Dir ""c"" []]) == Dir ""A"" [Dir ""A"" []]
+",5,3,4,1,3,4
 lengthList ,"Beschreibung: Gibt die Anzahl der Elemente in einer eigenen List-Struktur zurück. Nil zählt als 0, Cons erhöht die Länge um 1 pro Element. Keine weiteren Bedingungen.
-","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 lengthList :: List a -> Int
 lengthList Nil = undefined
-lengthList (Cons _ xs) = undefined","lengthList Nil == 0
+lengthList (Cons _ xs) = undefined
+","lengthList Nil == 0
 lengthList (Cons 42 Nil) == 1
 lengthList (Cons 1 (Cons 2 (Cons 3 Nil))) == 3
 lengthList (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil)))) == 4
@@ -117,61 +153,80 @@ lengthList (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil)))) == 4
 sortList ,Beschreibung: Sortiert eine eigene List-Struktur aufsteigend nach Ord und gibt die sortierte Liste zurück. Für Nil wird Nil zurückgegeben; sortiert rekursiv mit Einfügesortierung.,"data List a = Nil | Cons a (List a) deriving (Eq, Show)
 sortList :: Ord a => List a -> List a
 sortList Nil = undefined
-sortList (Cons x xs) = undefined","sortList Nil == Nil
+sortList (Cons x xs) = undefined
+","sortList Nil == Nil
 sortList (Cons 3 Nil) == Cons 3 Nil
 sortList (Cons 2 (Cons 1 (Cons 5 (Cons 3 Nil)))) == Cons 1 (Cons 2 (Cons 3 (Cons 5 Nil)))
-sortList (Cons 8 (Cons 8 (Cons 8 Nil))) == Cons 8 (Cons 8 (Cons 8 Nil))",5,2,4,2,5,2
-takeWhileList ,"Beschreibung: Gibt die längste Präfix-Teil-Liste einer eigenen Liste zurück, deren Elemente ein Prädikat erfüllen; bricht beim ersten Nicht-Erfüllen ab. Nil liefert Nil.","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+sortList (Cons 8 (Cons 8 (Cons 8 Nil))) == Cons 8 (Cons 8 (Cons 8 Nil))
+",5,2,4,2,5,2
+takeWhileList ,"Beschreibung: Gibt die längste Präfix-Teil-Liste einer eigenen Liste zurück, deren Elemente ein Prädikat erfüllen; bricht beim ersten Nicht-Erfüllen ab. Nil liefert Nil.
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 takeWhileList :: (a -> Bool) -> List a -> List a
 takeWhileList p Nil = undefined
-takeWhileList p (Cons x xs) = undefined","takeWhileList (<3) Nil == Nil
+takeWhileList p (Cons x xs) = undefined
+","takeWhileList (<3) Nil == Nil
 takeWhileList (<3) (Cons 2 Nil) == Cons 2 Nil
 takeWhileList (<3) (Cons 1 (Cons 2 (Cons 3 (Cons 1 Nil)))) == Cons 1 (Cons 2 Nil)
 takeWhileList even (Cons 4 (Cons 6 (Cons 5 (Cons 8 Nil)))) == Cons 4 (Cons 6 Nil)
-",5,3,4,2,4,3
+
+",5,3,4,2,4,3
 containsTree ,"Beschreibung: Überprüft, ob ein gegebener Wert im Binärbaum enthalten ist; gibt True bei Fund, sonst False, Empty enthält nie ein Element.","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)
 containsTree :: Eq a => a -> BinTree a -> Bool
 containsTree _ Empty = undefined
-containsTree x (Node l v r) = undefined","containsTree 3 Empty == False
+containsTree x (Node l v r) = undefined
+","containsTree 3 Empty == False
 containsTree 5 (Node Empty 5 Empty) == True
 containsTree 4 (Node (Node Empty 2 Empty) 3 (Node Empty 4 Empty)) == True
-containsTree 7 (Node (Node Empty 2 Empty) 3 (Node Empty 5 Empty)) == False",5,4,4,2,3,4
-sizeTree ,"Beschreibung: Berechnet die Gesamtanzahl der Knoten eines Binärbaums; gibt 0 für einen leeren Baum, sonst 1 plus die Größe beider Teilbäume zurück.","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)  
+containsTree 7 (Node (Node Empty 2 Empty) 3 (Node Empty 5 Empty)) == False
+",5,4,4,2,3,4
+sizeTree ,"Beschreibung: Berechnet die Gesamtanzahl der Knoten eines Binärbaums; gibt 0 für einen leeren Baum, sonst 1 plus die Größe beider Teilbäume zurück.
+","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)  
 sizeTree :: BinTree a -> Int  
 sizeTree Empty = undefined  
-sizeTree (Node l _ r) = undefined","sizeTree Empty == 0
+sizeTree (Node l _ r) = undefined
+","sizeTree Empty == 0
 sizeTree (Node Empty 1 Empty) == 1
 sizeTree (Node (Node Empty 5 Empty) 3 (Node Empty 7 Empty)) == 3
 sizeTree (Node (Node (Node Empty 1 Empty) 2 Empty) 4 Empty) == 3
-",5,4,3,2,3,4
-zipList ,"Beschreibung: Kombiniert zwei eigene List-Strukturen zu einer neuen Liste mit Paaren. Elemente werden bis zur kürzeren Liste gepaart; überschüssige Elemente werden ignoriert.","data List a = Nil | Cons a (List a) deriving (Eq, Show)
+
+",5,4,3,2,3,4
+zipList ,"Beschreibung: Kombiniert zwei eigene List-Strukturen zu einer neuen Liste mit Paaren. Elemente werden bis zur kürzeren Liste gepaart; überschüssige Elemente werden ignoriert.
+","data List a = Nil | Cons a (List a) deriving (Eq, Show)
 zipList :: List a -> List b -> List (a, b)
 zipList Nil _ = undefined
 zipList _ Nil = undefined
-zipList (Cons x xs) (Cons y ys) = undefined","zipList Nil Nil == Nil
+zipList (Cons x xs) (Cons y ys) = undefined
+","zipList Nil Nil == Nil
 zipList (Cons 1 Nil) (Cons 'a' Nil) == Cons (1,'a') Nil
 zipList (Cons 1 (Cons 2 Nil)) (Cons 'x' Nil) == Cons (1,'x') Nil
 zipList (Cons 1 (Cons 2 Nil)) (Cons 'a' (Cons 'b' (Cons 'c' Nil))) == Cons (1,'a') (Cons (2,'b') Nil)
-",5,4,4,2,4,2
+
+",5,4,4,2,4,2
 flattenTree ,"Beschreibung: Wandelt einen Binärbaum in eine List-Struktur um, indem alle Werte inorder (links, Wurzel, rechts) gesammelt werden. Gibt Nil für einen leeren Baum zurück.
-","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)
+
+","data BinTree a = Empty | Node (BinTree a) a (BinTree a) deriving (Eq, Show)
 data List a = Nil | Cons a (List a) deriving (Eq, Show)
 flattenTree :: BinTree a -> List a
 flattenTree Empty = undefined
-flattenTree (Node l v r) = undefined","flattenTree Empty == Nil
+flattenTree (Node l v r) = undefined
+","flattenTree Empty == Nil
 flattenTree (Node Empty 4 Empty) == Cons 4 Nil
 flattenTree (Node (Node Empty 2 Empty) 3 (Node Empty 4 Empty)) == Cons 2 (Cons 3 (Cons 4 Nil))
-flattenTree (Node (Node Empty 1 Empty) 5 (Node (Node Empty 7 Empty) 9 Empty)) == Cons 1 (Cons 5 (Cons 7 (Cons 9 Nil)))",5,4,4,2,4,2
+flattenTree (Node (Node Empty 1 Empty) 5 (Node (Node Empty 7 Empty) 9 Empty)) == Cons 1 (Cons 5 (Cons 7 (Cons 9 Nil)))
+",5,4,4,2,4,2
 evalTerm ,"Beschreibung: Berechnet den Wert eines algebraischen Terms, indem Konstanten und die Grundoperationen Addition und Multiplikation ausgewertet werden; Variablen ergeben Fehler (Nothing).","data Term = Const Int | Var String | Add Term Term | Mul Term Term deriving (Eq, Show)
 evalTerm :: Term -> Maybe Int
 evalTerm (Const n) = undefined
 evalTerm (Var _) = undefined
 evalTerm (Add t1 t2) = undefined
-evalTerm (Mul t1 t2) = undefined","evalTerm (Const 3) == Just 3
+evalTerm (Mul t1 t2) = undefined
+","evalTerm (Const 3) == Just 3
 evalTerm (Add (Const 2) (Const 5)) == Just 7
 evalTerm (Mul (Const 2) (Add (Const 1) (Const 3))) == Just 8
 evalTerm (Add (Var ""x"") (Const 4)) == Nothing
-",3,3,3,4,3,4
+
+",3,3,3,4,3,4
 ,,,,,,,,,
 Exercise,Course fitting,Understandability,Creativity,Repetitiveness,Difficulty,Test coverage,,,
-types,4.35,3.5,3.7,2.3,3.35,#DIV/0!,,,
+
+types,4.35,3.5,3.7,2.3,3.35,3.35!,,,
